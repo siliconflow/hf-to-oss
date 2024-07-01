@@ -1,3 +1,9 @@
+# Development
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/J5Tsai/debug-static-file
+```
+
 # Create a GitHub Action Using TypeScript
 
 [![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)

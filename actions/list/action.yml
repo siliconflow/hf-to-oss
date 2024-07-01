@@ -1,0 +1,35 @@
+name: 'list git large files'
+description: 'Provide a description here'
+author: 'Your name or organization here'
+
+# Add your action's branding here. This will appear on the GitHub Marketplace.
+branding:
+  icon: 'heart'
+  color: 'red'
+
+# Define your inputs here.
+inputs:
+  action:
+    description: ''
+    required: false
+    default: 'list'
+  repo-dir:
+    description: 'Your input description here'
+    required: true
+  max-parallel:
+    description: 'Your input description here'
+    required: false
+    default: '10'
+  repo-ref:
+    description: 'Your input description here'
+    required: false
+    default: 'HEAD'
+
+# Define your outputs here.
+outputs:
+  matrix:
+    description: ''
+
+runs:
+  using: node20
+  main: ../../dist/index.js
