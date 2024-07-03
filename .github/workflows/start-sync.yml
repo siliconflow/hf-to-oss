@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: hf-oss-start-sync-${{ github.ref }}-${{ inputs.hf-repo }}
+  group: hf-oss-start-sync-${{ github.ref }}-${{ github.actor }}-${{ inputs.hf-repo }}
   cancel-in-progress: true
 
 jobs:
