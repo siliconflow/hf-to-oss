@@ -83,7 +83,7 @@ jobs:
           GIT_LFS_SKIP_SMUDGE: 1
       - name: Get HEAD
         id: get-head
-        run: echo "commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+        run: echo "commit=\"$(git rev-parse HEAD)\"" >> $GITHUB_OUTPUT
         working-directory: ${{ env.HF_MODEL_REPO_DIR }}
       - name: Upload to oss
         id: upload_to_oss
