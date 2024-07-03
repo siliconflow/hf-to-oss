@@ -10,6 +10,15 @@ on:
 
 permissions:
   contents: read
+env:
+  # setting them for the JS tests
+  OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+  OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+  HF_MODEL_REPO_DIR: model_to_sync
+
+concurrency:
+  group: hf-oss-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test-typescript:
@@ -40,25 +49,21 @@ jobs:
         id: npm-lint
         run: npm run lint
 
+      - run: |
+          git clone \
+            https://huggingface.co/J5Tsai/debug-static-files \
+            ${{ env.HF_MODEL_REPO_DIR }}
+        env:
+          GIT_LFS_SKIP_SMUDGE: 1
+
       - name: Test
         id: npm-ci-test
         run: npm run ci-test
+        env:
+          HF_TO_OSS_DEBUG_REPO_DIR: ${{ env.HF_MODEL_REPO_DIR }}
 
-  test-action:
-    name: GitHub Actions Test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@v4
-
-      - name: Test Local Action
-        id: test-action
-        uses: ./
-        with:
-          milliseconds: 2000
-
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+  call-workflow-to-sync:
+    uses: ./.github/workflows/sync.yml
+    secrets: inherit
+    with:
+      hf-repo: J5Tsai/debug-static-files

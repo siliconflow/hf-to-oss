@@ -30,7 +30,7 @@
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
-    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package": "npx ncc build src/index.ts -o dist --source-map",
     "package:watch": "npm run package -- --watch",
     "test": "npx jest",
     "all": "npm run format:write && npm run lint && npm run test && npm run coverage && npm run package"
@@ -66,11 +66,16 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "ali-oss": "^6.20.0",
+    "isomorphic-git": "^1.26.3"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@types/ali-oss": "^6.16.11",
+    "@types/axios": "^0.14.0",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.8",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",

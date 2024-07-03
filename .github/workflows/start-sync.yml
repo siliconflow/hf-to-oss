@@ -1,0 +1,23 @@
+name: Start Sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      hf-repo:
+        required: true
+        type: string
+        default: J5Tsai/debug-static-files
+
+permissions:
+  contents: read
+
+concurrency:
+  group: start-sync-${{ github.ref }}-${{ github.actor }}-${{ inputs.hf-repo }}
+  cancel-in-progress: true
+
+jobs:
+  call-workflow-to-sync:
+    uses: ./.github/workflows/sync.yml
+    secrets: inherit
+    with:
+      hf-repo: ${{ inputs.hf-repo }}
