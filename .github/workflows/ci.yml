@@ -11,12 +11,7 @@ on:
 permissions:
   contents: read
 env:
-  OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
-  OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
   HF_MODEL_REPO_DIR: model_to_sync
-  # HF_REPO: stabilityai/stable-diffusion-3-medium
-  HF_REPO: J5Tsai/debug-static-files
-  HF_USERNAME: J5Tsai
 
 concurrency:
   group: hf-oss-ci-${{ github.ref }}
