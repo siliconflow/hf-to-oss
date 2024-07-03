@@ -16,6 +16,7 @@ env:
   HF_MODEL_REPO_DIR: model_to_sync
   # HF_REPO: stabilityai/stable-diffusion-3-medium
   HF_REPO: J5Tsai/debug-static-files
+  HF_USERNAME: J5Tsai
 
 concurrency:
   group: hf-oss-ci-${{ github.ref }}
@@ -77,7 +78,7 @@ jobs:
       - name: Checkout Repo
         run: |
           git clone \
-            https://${{ secrets.HF_USERNAME }}:${{ secrets.HF_TOKEN }}@huggingface.co/${{ env.HF_REPO }} \
+            https://${{ env.HF_USERNAME }}:${{ secrets.HF_TOKEN }}@huggingface.co/${{ env.HF_REPO }} \
             ${{ env.HF_MODEL_REPO_DIR }}
         env:
           GIT_LFS_SKIP_SMUDGE: 1
