@@ -50,7 +50,10 @@ jobs:
         id: npm-lint
         run: npm run lint
 
-      - run: git clone https://huggingface.co/J5Tsai/debug-static-files ${{ env.HF_MODEL_REPO_DIR }}
+      - run: |
+          git clone \
+            https://huggingface.co/J5Tsai/debug-static-files \
+            ${{ env.HF_MODEL_REPO_DIR }}
         env:
           GIT_LFS_SKIP_SMUDGE: 1
 
