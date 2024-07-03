@@ -1,4 +1,4 @@
-# Sync HF Repo to OSS
+# Sync HF Repository to OSS
 
 ## Development
 
