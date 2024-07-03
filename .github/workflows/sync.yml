@@ -23,7 +23,7 @@ env:
   HF_USERNAME: J5Tsai
 
 concurrency:
-  group: hf-oss-ci-${{ github.ref }}
+  group: hf-oss-sync-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
