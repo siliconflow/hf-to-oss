@@ -96,7 +96,7 @@ jobs:
           assets: |
             ${{ env.HF_MODEL_REPO_DIR }}/**:/${{ env.HF_REPO }}/${{ steps.get-head.outputs.commit }}/
 
-      - name: Test Local Action
+      - name: List files
         id: list-action
         uses: ./actions/list
         with:
@@ -115,7 +115,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Test Local Action
+      - name: Sync files
         id: list-action
         uses: ./actions/sync
         with:
