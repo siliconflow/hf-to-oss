@@ -103,7 +103,7 @@ jobs:
           repo-dir: ${{ env.HF_MODEL_REPO_DIR }}
 
   sync-oss:
-    name: 'Sync ${{ matrix.task.size }} to OSS ${{ matrix.task.id }}'
+    name: '#${{ matrix.task.id }} Sync ${{ matrix.task.size }} to OSS'
     runs-on: ubuntu-latest
     needs: list
     strategy:

@@ -87791,7 +87791,7 @@ function generateMatrix(urls, maxParallel) {
     return {
         task: _.chunk(_.shuffle(urls), chunkSize).map((chunk, index) => ({
             urls: chunk.join('\n'),
-            id: `#${index + 1}`,
+            id: `${index + 1}`,
             size: chunk.length
         }))
     };
