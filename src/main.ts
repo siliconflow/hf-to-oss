@@ -8,12 +8,13 @@ import * as stream from 'stream'
 const PassThrough = stream.PassThrough
 import * as _ from 'lodash'
 
-const client = new OSS({
-  region: 'oss-cn-beijing',
-  accessKeyId: process.env.OSS_ACCESS_KEY_ID as string,
-  accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET as string,
-  bucket: 'hf-sync'
-})
+const getClient = (): OSS =>
+  new OSS({
+    region: 'oss-cn-beijing',
+    accessKeyId: process.env.OSS_ACCESS_KEY_ID as string,
+    accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET as string,
+    bucket: 'hf-sync'
+  })
 
 /**
  * The main function for the action.
@@ -130,6 +131,7 @@ async function sync(): Promise<void> {
         }
       }
     })
+    const client = getClient()
     await client.putStream(dst_oss_path, res.data.pipe(new PassThrough()), {
       timeout: 1000 * 60 * 60
     } as OSS.PutStreamOptions)
