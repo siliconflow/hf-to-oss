@@ -87764,7 +87764,7 @@ const ali_oss_1 = __importDefault(__nccwpck_require__(92399));
 const stream = __importStar(__nccwpck_require__(12781));
 const PassThrough = stream.PassThrough;
 const _ = __importStar(__nccwpck_require__(90250));
-const client = new ali_oss_1.default({
+const getClient = () => new ali_oss_1.default({
     region: 'oss-cn-beijing',
     accessKeyId: process.env.OSS_ACCESS_KEY_ID,
     accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
@@ -87857,6 +87857,7 @@ async function sync() {
                 }
             }
         });
+        const client = getClient();
         await client.putStream(dst_oss_path, res.data.pipe(new PassThrough()), {
             timeout: 1000 * 60 * 60
         });
