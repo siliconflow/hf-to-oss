@@ -50,7 +50,7 @@ function generateMatrix(
   maxParallel = Math.min(maxParallel, MAX_JOBS)
   const chunkSize = Math.min(Math.ceil(urls.length / maxParallel), urls.length)
   return {
-    task: _.chunk(_.shuffle(urls), chunkSize).map((chunk, index) => ({
+    task: _.chunk(_.sortBy(urls), chunkSize).map((chunk, index) => ({
       urls: chunk.join('\n'),
       id: `${index + 1}`,
       size: chunk.length
